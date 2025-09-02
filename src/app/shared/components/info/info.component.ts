@@ -1,3 +1,4 @@
+// filepath: /Users/sevahun/internship/angular-fundamentals-template/src/app/shared/components/info/info.component.ts
 import { Component, Input } from '@angular/core';
 
 @Component({

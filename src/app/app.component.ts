@@ -2,8 +2,6 @@ import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Subject, Observable, forkJoin, combineLatest, Subscription } from 'rxjs';
 import { debounceTime, filter, switchMap, map, takeUntil } from 'rxjs/operators';
 import { MockDataService } from './mock-data.service';
-import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
-import { fas } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
