@@ -40,7 +40,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   // 4: Load Characters and Planets, combine results
-  loadCharactersAndPlanets() {
+  loadCharactersAndPlanet() {
     this.planetAndCharactersResults$ = forkJoin([
       this.mockDataService.getCharacters(),
       this.mockDataService.getPlanets()
