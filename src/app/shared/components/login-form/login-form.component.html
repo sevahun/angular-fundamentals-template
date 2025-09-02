@@ -1,68 +1,21 @@
-<h2 class="text-align-center">Login</h2>
-<div class="app-plate">
-  <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
-    <div class="login-form">
-      <div>
-        <div class="form__control">
-          <label for="email">Email</label>
-          <!-- Use ngModel + name + custom directive -->
-          <input
-            type="text"
-            id="email"
-            name="email"
-            [(ngModel)]="email"
-            required
-            appEmailValidator
-            placeholder="Input text"
-          />
-          <span
-            id="emailErrorMessage"
-            class="text-danger"
-            *ngIf="
-              loginForm.submitted &&
-              loginForm.controls['email']?.errors
-            "
-          >
-            <ng-container *ngIf="loginForm.controls['email']?.errors?.['required']">
-              Email is required.
-            </ng-container>
-            <ng-container *ngIf="loginForm.controls['email']?.errors?.['email']">
-              Please enter a valid email address.
-            </ng-container>
-          </span>
-        </div>
-
-        <div class="form__control">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            [(ngModel)]="password"
-            required
-            placeholder="Input text"
-          />
-          <span
-            id="passwordErrorMessage"
-            class="text-danger"
-            *ngIf="
-              loginForm.submitted &&
-              loginForm.controls['password']?.errors
-            "
-          >
-            Password is required.
-          </span>
-        </div>
-      </div>
-
-      <div>
-        <div class="form__action">
-          <app-button type="submit"></app-button>
-        </div>
-        <div class="form__text">
-          If you don't have an account you may <strong>Registration</strong>
-        </div>
-      </div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <!-- Email -->
+  <div>
+    <input formControlName="email" placeholder="Email" />
+    <div class="error-message" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+      <span *ngIf="form.get('email')?.errors?.['required']">Email is required</span>
+      <span *ngIf="form.get('email')?.errors?.['email']">Invalid email format</span>
     </div>
-  </form>
-</div>
+  </div>
+
+  <!-- Password -->
+  <div>
+    <input type="password" formControlName="password" placeholder="Password" />
+    <div class="error-message" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
+      <span *ngIf="form.get('password')?.errors?.['required']">Password is required</span>
+      <span *ngIf="form.get('password')?.errors?.['minlength']">Password must be at least 6 characters</span>
+    </div>
+  </div>
+
+  <button type="submit">Login</button>
+</form>
