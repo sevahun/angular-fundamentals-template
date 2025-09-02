@@ -1,5 +1,10 @@
 import { Directive } from '@angular/core';
-import { NG_VALIDATORS, Validator, AbstractControl, ValidationErrors, Validators } from '@angular/forms';
+import {
+  NG_VALIDATORS,
+  Validator,
+  AbstractControl,
+  ValidationErrors,
+} from '@angular/forms';
 
 @Directive({
   selector: '[appEmailValidator]',
@@ -7,16 +12,21 @@ import { NG_VALIDATORS, Validator, AbstractControl, ValidationErrors, Validators
     {
       provide: NG_VALIDATORS,
       useExisting: EmailValidatorDirective,
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class EmailValidatorDirective implements Validator {
   validate(control: AbstractControl): ValidationErrors | null {
     const email = control.value;
+
     if (!email) {
-      return { required: true }; // still handle empty case
+      return { required: true }; // empty is invalid
     }
-    return Validators.email(control);
+
+    // Simple regex for email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    return emailRegex.test(email) ? null : { email: true };
   }
 }
