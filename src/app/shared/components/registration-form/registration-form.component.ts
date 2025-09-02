@@ -1,12 +1,24 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-registration-form',
-  templateUrl: './registration-form.component.html',
-  styleUrls: ['./registration-form.component.scss'],
+  templateUrl: './registration-form.component.html'
 })
 export class RegistrationFormComponent {
-  registrationForm!: FormGroup;
-  // Use the names `name`, `email`, `password` for the form controls.
+  submitted = false;
+  form = this.fb.group({
+    name: ['', [Validators.required, Validators.minLength(6)]],
+    email: ['', [Validators.required]],
+    password: ['', [Validators.required]]
+  });
+
+  constructor(private fb: FormBuilder) {}
+
+  onSubmit() {
+    this.submitted = true;
+    if (this.form.valid) {
+      // handle registration
+    }
+  }
 }
