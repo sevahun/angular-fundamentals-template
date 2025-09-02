@@ -10,6 +10,10 @@ export class SearchComponent {
   @Output() search = new EventEmitter<string>();
   term = '';
 
+  onInput(event: Event) {
+    this.term = (event.target as HTMLInputElement).value;
+  }
+
   onSearch() {
     this.search.emit(this.term);
   }
