@@ -1,5 +1,5 @@
 <div class="info-container">
   <h2>{{ title }}</h2>
-  <p *ngIf="text">{{ text }}</p>
+  <p>{{ text || '' }}</p>
   <ng-content></ng-content>
 </div>
