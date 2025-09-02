@@ -25,9 +25,15 @@ export class EmailValidatorDirective implements Validator {
       return { required: true };
     }
 
+    // use Angular’s built-in email validator
     const result = Validators.email(control);
 
-    // Angular returns null (valid) or { email: true } (invalid)
-    return result ? { email: true } : null;
+    // if invalid, return the error object directly
+    if (result) {
+      return result; // e.g. { email: true }
+    }
+
+    // valid → null
+    return null;
   }
 }
