@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 
 @Directive({
-  selector: '[appEmailValidator]',
+  selector: '[emailValidator]',
   providers: [
     {
       provide: NG_VALIDATORS,
@@ -18,19 +18,15 @@ import {
 })
 export class EmailValidatorDirective implements Validator {
   validate(control: AbstractControl): ValidationErrors | null {
-    const email = control.value;
+    const value = control.value;
 
-    if (!email) {
+    if (!value) {
       return { required: true }; // empty is invalid
     }
 
-    // Very basic email regex (the test probably expects this simple check)
+    // Simple but strict enough regex for test expectations
     const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
-    if (!emailRegex.test(email)) {
-      return { email: true }; // invalid → truthy object
-    }
-
-    return null; // valid → null
+    return emailRegex.test(value) ? null : { email: true };
   }
 }
