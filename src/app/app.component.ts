@@ -1,7 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Subject, Observable, forkJoin, combineLatest, Subscription } from 'rxjs';
 import { debounceTime, filter, switchMap, map, takeUntil } from 'rxjs/operators';
 import { MockDataService } from './mock-data.service';
+import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { fas } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +11,11 @@ import { MockDataService } from './mock-data.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy {
+  today = new Date();
+  onShowCourse() {
+    // Implement your logic here
+    alert('Show course clicked!');
+  }
   searchTermByCharacters = new Subject<string>();
   characters$: Observable<any> | undefined;
   planetAndCharactersResults$!: Observable<any>;

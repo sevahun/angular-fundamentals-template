@@ -1,23 +1,25 @@
-<app-header></app-header>
+<app-header>
+  <!-- Content projected to the right side of header -->
+  <span class="username">Username</span>
+  <app-button buttonText="Logout" iconName="sign-out-alt"></app-button>
+</app-header>
+
 <div class="app-root">
-  <!-- Search component -->
-  <!--<app-search></app-search>-->
+  <!-- Info component demonstration -->
+  <app-info title="Welcome!" text="This is the info component.">
+    <app-button buttonText="Learn More"></app-button>
+  </app-info>
 
-  <!-- Info component -->
-  <!--<app-info></app-info>-->
-
-  <!-- Course Card component -->
-  <!--<app-course-card></app-course-card>-->
-
-  <!-- Login Form component -->
-  <!--<app-login-form></app-login-form>-->
-
-  <!-- Login Form component -->
-  <!--<app-registration-form></app-registration-form>-->
-
-  <!-- Login Form component -->
-  <!--<app-course-form></app-course-form>-->
-
-  <!-- Modal component -->
-  <!-- <app-modal [message]="'Message'" [title]="'Title'" [okButtonText]="'Ok'" [cancelButtonText]="'Cancel'"></app-modal> -->
+  <!-- Course Card component demonstration -->
+  <app-course-card
+    [title]="'Angular Fundamentals'"
+    [description]="'Learn the basics of Angular.'"
+    [creationDate]="today"
+    [duration]="120"
+    [authors]="['John Doe', 'Jane Smith']"
+    [editable]="true"
+    (clickOnShow)="onShowCourse()"
+  >
+    <app-button buttonText="Custom Action"></app-button>
+  </app-course-card>
 </div>
