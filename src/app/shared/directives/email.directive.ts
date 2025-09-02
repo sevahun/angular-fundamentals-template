@@ -4,6 +4,7 @@ import {
   Validator,
   AbstractControl,
   ValidationErrors,
+  Validators,
 } from '@angular/forms';
 
 @Directive({
@@ -21,12 +22,12 @@ export class EmailValidatorDirective implements Validator {
     const email = control.value;
 
     if (!email) {
-      return { required: true }; // empty is invalid
+      return { required: true };
     }
 
-    // Simple regex for email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const result = Validators.email(control);
 
-    return emailRegex.test(email) ? null : { email: true };
+    // Angular returns null (valid) or { email: true } (invalid)
+    return result ? { email: true } : null;
   }
 }
