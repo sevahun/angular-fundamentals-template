@@ -1,0 +1,16 @@
+<app-search (search)="onSearch($event)"></app-search>
+
+<div class="courses-list">
+  <app-course-card
+    *ngFor="let course of (courses$ | async)"
+    [course]="course"
+    (show)="showCourse(course.id)"
+    (edit)="editCourse(course.id)"
+    (delete)="deleteCourse(course.id)">
+  </app-course-card>
+</div>
+
+<!-- Add button only if user is admin -->
+<button *ngIf="(isAdmin$ | async)" (click)="addCourse()">
+  Add Course
+</button>

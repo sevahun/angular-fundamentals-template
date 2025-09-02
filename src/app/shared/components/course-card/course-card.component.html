@@ -4,8 +4,11 @@
   <p>Date: {{ creationDate | date }}</p>
   <p>Duration: {{ duration }} min</p>
   <p>Authors: {{ authors.join(', ') }}</p>
-  <button (click)="clickOnShow.emit()">Show course</button>
-  <ng-content></ng-content>
-  <button *ngIf="editable">Edit</button>
-  <button *ngIf="editable">Remove</button>
+
+  <button (click)="onShow()">Show course</button>
+
+  <ng-container *ngIf="editable">
+    <button (click)="onEdit()">Edit</button>
+    <button (click)="onRemove()">Remove</button>
+  </ng-container>
 </div>
